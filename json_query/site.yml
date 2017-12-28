@@ -1,0 +1,12 @@
+# -*- mode: Yaml; -*-
+# vi: set ts=2 sw=2 sts=0 et:
+
+---
+- hosts: localhost
+  connection: local
+  user: yokogawa-k
+  gather_facts: yes
+
+  roles:
+    - common
+

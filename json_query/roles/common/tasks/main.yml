@@ -1,0 +1,23 @@
+# -*- mode: Yaml; -*-
+# vi: set ts=2 sw=2 sts=0 et:
+
+---
+- name: vim tag list
+  uri:
+    url: https://api.github.com/repos/vim/vim/tags
+    return_content: yes
+  become: no
+  register: vim_tag_list
+  changed_when: vim_tag_list|failed
+
+  #- name: debug
+  #  debug:
+  #    msg: "{{ vim_tag_list }}"
+  #
+- name: output from json
+  debug:
+    msg: "{{ vim_tag_list.json | json_query('[].name') }}"
+
+- name: output from content
+  debug:
+    msg: "{{ vim_tag_list.content | from_json | json_query('[].name') }}"
